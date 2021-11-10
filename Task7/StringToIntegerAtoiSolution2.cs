@@ -23,13 +23,13 @@ namespace StringToIntegerAtoi
             string processedString = s.TrimStart(' ');
             if(processedString[0]=='+')
                 processedString = processedString.Substring(1);
-            if (processedString[0] == '-')
+            else if(processedString[0] == '-')
             {
                 sign = -1;
                 processedString = processedString.Substring(1);
             }
             int i = 0;
-            while (i < processedString.Length && processedString[i] >= '0' && processedString[i] <= '9')
+            while(i<processedString.Length && processedString[i] >= '0' && processedString[i] <= '9')
             {
                 i++;
             }
@@ -43,7 +43,7 @@ namespace StringToIntegerAtoi
             {
                 intResult = Convert.ToInt32(result);
             }
-            catch (OverflowException ex)
+            catch(OverflowException ex)
             {
                 return sign == -1 ? Int32.MinValue : Int32.MaxValue;
             }

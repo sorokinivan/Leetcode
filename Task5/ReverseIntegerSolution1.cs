@@ -16,18 +16,21 @@ namespace Task6Leetcode
         {
             if (x / 10 == 0)
                 return x;
-            var intString = x.ToString();
-            var stringResult = new string((intString.ToCharArray().Reverse()).ToArray());
-            int result;
-            try
+            char[] array = x.ToString().ToArray();
+            string stringResult = "";
+            if (array.Contains('-'))
             {
-                result = Convert.ToInt32(stringResult);
+                stringResult += '-';
+                array = array.Where(x => x != '-').ToArray();
             }
-            catch (OverflowException ex)
+            foreach(var res in array.Reverse())
             {
+                stringResult += res;
+            }
+            var result = Convert.ToInt64(stringResult);
+            if (result > Int32.MaxValue || result < Int32.MinValue)
                 return 0;
-            }
-            return result;
+            return (int)result;
         }
     }
 }
